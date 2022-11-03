@@ -19,14 +19,16 @@ class Login extends Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            invalid: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
     
 
     handleLogin = async () => {
-        const data = { username: this.state.username, password: this.state.password };
+        try{
+            const data = { username: this.state.username, password: this.state.password };
         
 
         const userWithToken = await axios.post(baseUrl + '/login', data)
@@ -34,6 +36,11 @@ class Login extends Component {
         
         await this.props.dispatch(addToken(userWithToken.data.token))
         await this.props.dispatch(addUser(userWithToken.data.user));
+        }
+        catch(error){
+            this.setState(prev => ({...prev, invalid: true}))
+        }
+        
     }
 
     handleInputChange = (event) => {
@@ -47,6 +54,7 @@ class Login extends Component {
         return(
             <div>
                 <h1>Please Sign In</h1>
+                {this.state.invalid && <h2>Invalid username/Password</h2>}
                 <label class="sr-only">Username</label>
                 <input
                     type="text"
