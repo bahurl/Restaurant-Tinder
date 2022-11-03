@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom'
 import {addToken, addUser} from '../../Redux/actionCreators'
 import {baseUrl} from '../../Shared/baseUrl'
 import axios from 'axios'
-import './login.css'
+import './Login.css'
 
 
 
@@ -56,7 +56,7 @@ class Login extends Component {
             <div className='login'>
                 <h1 id='message-login'>Please Sign In</h1>
                 {this.state.invalid && <p id='invalid-login'>Invalid username/Password</p>}
-                <label class="sr-only">Username</label>
+                <label id="username--box" class="sr-only">Username</label>
                 <input
                     type="text"
                     id="username"
@@ -67,7 +67,7 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     required
                 />
-                <label class="sr-only">Password</label>
+                <label id="password--box" class="sr-only">Password</label>
                 <input
                     type="password"
                     id="password"
@@ -78,8 +78,11 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     required
                 />
-                <Link id='redister-btn' to="/register">Need an account?</Link>
-                <button id='login-btn' type="submit" onClick={this.handleLogin}>Sign in</button>
+                <div id="login--register">
+                    <Link id='register-btn' to="/register">Need an account?</Link>       
+                    <button id='login-btn' type="submit" onClick={this.handleLogin}>Sign in</button>
+                </div>
+                
             </div>
         )
     }
