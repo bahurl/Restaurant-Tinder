@@ -11,7 +11,8 @@ class Register extends Component{
         this.state = {
             username: '',
             password: '',
-            confirmPassword: ''
+            confirmPassword: '',
+            
         }
         
     }
@@ -26,9 +27,9 @@ class Register extends Component{
     // function 
     validEmail = () => {
        
-        const atSign = email.indexOf("@")
-        const period = email.indexOf(".")
-        if((atSign < period) && (atSign != -1) && (period != -1)) {
+        const atSign = this.state.username.indexOf("@")
+        const period = this.state.username.indexOf(".")
+        if((atSign < period) && (atSign !== -1) && (period !== -1)) {
             return true;
         } else {
             return false;
@@ -37,25 +38,44 @@ class Register extends Component{
 
     // function 
     validPassword = (pass) => {
+        let lower = false;
+        let upper = false;
+        let num = false;
+        //atempting to fix error on code line 61
         if(pass.length < 8) {
-            return false
-        } 
+            return false;
+        } else{ 
+            const passArray = pass.split('');
+            passArray.forEach(i => {
+                if (i===i.toUppercase()){
+                    upper = true;
+                }else if (i===i.toLowerCase()){
+                    lower = true;
+                }else if(!isNaN(i)){
+                    num = true;
+                }
+            });
+           return (lower && upper && num);
+        }
         
-        let cap = "[A-Z]".test(pass)
-        let lower = "[a-z]".test(pass)
-        let num = [0-9].test(pass)
-
-        return cap && lower && num;
+        // let cap = "[A-Z]".test(pass)
+        // let lower = "[a-z]".test(pass)
+        // let num = [0-9].test(pass)
+        //return cap && lower && num;
+        
+       
+        
+       
     }
 
     handleSubmit = () => {
         
-        if(!validEmail(this.state.username)) {
+        if(!this.validEmail(this.state.username)) {
             alert("Invalid email")
             return;
         }
 
-        if(!validPassword(this.state.password)) {
+        if(!this.validPassword(this.state.password)) {
             alert("Invalid password")
             return;
         }
@@ -71,7 +91,7 @@ class Register extends Component{
         if(this.state.password === this.state.confirmPassword){
             
             const response = axios.post(baseUrl + "/register", data);
-            if(response.status != 200) {
+            if(response.status !== 200) {
                 alert("Email address is already in use.")
             }
 
@@ -92,6 +112,7 @@ class Register extends Component{
                     class="form-control"
                     placeholder="Username"
                     v-model="user.username"
+                    value={this.username}
                     onChange={this.handleInputChange}
                     required
                 />
@@ -103,6 +124,7 @@ class Register extends Component{
                     class="form-control"
                     placeholder="Password"
                     v-model="user.password"
+                    value={this.password}
                     onChange={this.handleInputChange}
                     required
                 />
