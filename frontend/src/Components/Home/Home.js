@@ -24,7 +24,7 @@ function Home(props) {
         },
       };
       axios
-    .get("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search", config)
+    .get("https://api.yelp.com/v3/businesses/search", config)
     .then((response) => {
       console.log(response); 
     });

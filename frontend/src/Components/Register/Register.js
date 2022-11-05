@@ -23,7 +23,8 @@ class Register extends Component{
         })
     }
 
-    function validEmail() {
+    // function 
+    validEmail = () => {
        
         const atSign = email.indexOf("@")
         const period = email.indexOf(".")
@@ -34,7 +35,8 @@ class Register extends Component{
         } 
     }
 
-    function validPassword(pass) {
+    // function 
+    validPassword = (pass) => {
         if(pass.length < 8) {
             return false
         } 
