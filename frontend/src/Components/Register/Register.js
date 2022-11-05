@@ -2,6 +2,7 @@ import axios from 'axios'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import { baseUrl } from '../../Shared/baseUrl'
+import './Register.css'
 
 class Register extends Component{
 
@@ -22,10 +23,56 @@ class Register extends Component{
         })
     }
 
+    function validEmail() {
+       
+        const atSign = email.indexOf("@")
+        const period = email.indexOf(".")
+        if((atSign < period) && (atSign != -1) && (period != -1)) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+
+    function validPassword(pass) {
+        if(pass.length < 8) {
+            return false
+        } 
+        
+        let cap = "[A-Z]".test(pass)
+        let lower = "[a-z]".test(pass)
+        let num = [0-9].test(pass)
+
+        return cap && lower && num;
+    }
+
     handleSubmit = () => {
+        
+        if(!validEmail(this.state.username)) {
+            alert("Invalid email")
+            return;
+        }
+
+        if(!validPassword(this.state.password)) {
+            alert("Invalid password")
+            return;
+        }
+        
         const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: 'USER'}
+        
+        // if(this.state.password === this.state.confirmPassword){
+        //     axios.post(baseUrl + "/register", data)
+        // }else{
+        //     alert("Password and Confirm Password must match!!!")
+        // }
+
         if(this.state.password === this.state.confirmPassword){
-            axios.post(baseUrl + "/register", data)
+            
+            const response = axios.post(baseUrl + "/register", data);
+            if(response.status != 200) {
+                alert("Email address is already in use.")
+            }
+
         }else{
             alert("Password and Confirm Password must match!!!")
         }
@@ -33,7 +80,7 @@ class Register extends Component{
 
     render(){
         return(
-            <div>
+            <div className='register'>
                 <h1>Create Account</h1>
                 <label class="sr-only">Username</label>
                 <input
@@ -68,7 +115,7 @@ class Register extends Component{
                     required
                 />
                 <Link to="/login">Have an account?</Link>
-                <button type="submit" onClick={this.handleSubmit}>Sign in</button>
+                <button type="submit" onClick={this.handleSubmit}>Sign up</button>
             </div>
         )
     }
