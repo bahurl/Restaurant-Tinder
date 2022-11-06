@@ -24,48 +24,38 @@ class Register extends Component{
         })
     }
 
-    // function 
-    validEmail = () => {
-       
+    validEmail = (email) => {
+        let atCount = 0;
+        let periodCount = 0;
         const atSign = this.state.username.indexOf("@")
         const period = this.state.username.indexOf(".")
-        if((atSign < period) && (atSign !== -1) && (period !== -1)) {
+
+        for (let i = 0; i < email.length; i++) {
+            if(email[i]==='@') {
+                atCount++;
+                continue;
+            } if(email[i]==='.') {
+                periodCount++;
+                continue;
+            }  
+        }
+
+        if((atSign < period) && (period-atSign > 1) && (atCount===1) && (periodCount===1)) {
             return true;
         } else {
             return false;
         } 
     }
-
-    // function 
+ 
     validPassword = (pass) => {
-        let lower = false;
-        let upper = false;
-        let num = false;
-        //atempting to fix error on code line 61
         if(pass.length < 8) {
             return false;
-        } else{ 
-            const passArray = pass.split('');
-            passArray.forEach(i => {
-                if (i===i.toUppercase()){
-                    upper = true;
-                }else if (i===i.toLowerCase()){
-                    lower = true;
-                }else if(!isNaN(i)){
-                    num = true;
-                }
-            });
-           return (lower && upper && num);
+        } else { 
+            let cap = /[A-Z]/g.test(pass)
+            let lower = /[a-z]/g.test(pass)
+            let num = /[0-9]/g.test(pass)
+            return cap && lower && num;
         }
-        
-        // let cap = "[A-Z]".test(pass)
-        // let lower = "[a-z]".test(pass)
-        // let num = [0-9].test(pass)
-        //return cap && lower && num;
-        
-       
-        
-       
     }
 
     handleSubmit = () => {
@@ -82,21 +72,19 @@ class Register extends Component{
         
         const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: 'USER'}
         
-        // if(this.state.password === this.state.confirmPassword){
-        //     axios.post(baseUrl + "/register", data)
-        // }else{
-        //     alert("Password and Confirm Password must match!!!")
-        // }
 
         if(this.state.password === this.state.confirmPassword){
             
-            const response = axios.post(baseUrl + "/register", data);
-            if(response.status !== 200) {
-                alert("Email address is already in use.")
-            }
+            axios.post(baseUrl + "/register", data)
+                .then((response) => {
+                    alert("Account successfully created!");
+                })
+                .catch((error) => {
+                    alert("Email address is already in use.");
+                });
 
         }else{
-            alert("Password and Confirm Password must match!!!")
+            alert("Password and Confirm Password must match!")
         }
     }
 
@@ -104,7 +92,7 @@ class Register extends Component{
         return(
             <div className='register'>
                 <h1>Create Account</h1>
-                <label class="sr-only">Username</label>
+                <label id="username--box" class="sr-only">Username</label>
                 <input
                     type="text"
                     id="username"
@@ -116,7 +104,7 @@ class Register extends Component{
                     onChange={this.handleInputChange}
                     required
                 />
-                <label class="sr-only">Password</label>
+                <label id="password--box" class="sr-only">Password</label>
                 <input
                     type="password"
                     id="password"
@@ -128,6 +116,7 @@ class Register extends Component{
                     onChange={this.handleInputChange}
                     required
                 />
+                <label id="password--box" class="sr-only">Password</label>
                 <input
                     type="password"
                     id="password-confirm"
@@ -138,8 +127,10 @@ class Register extends Component{
                     onChange={this.handleInputChange}
                     required
                 />
-                <Link to="/login">Have an account?</Link>
-                <button type="submit" onClick={this.handleSubmit}>Sign up</button>
+                <div id="sign-in--register">
+                    <Link id='register-btn' to="/login">Have an account?</Link>
+                    <button id='sign-in-btn' type="submit" onClick={this.handleSubmit}>Sign up</button>
+                </div>
             </div>
         )
     }
