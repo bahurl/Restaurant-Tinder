@@ -8,5 +8,5 @@ public interface RestaurantDao {
 
     List<Restaurant> getNearbyRestaurants(String location);
 
-    List<Restaurant> getRestaurantFilter(String location, String type);
+    List<Restaurant> getNearbyRestaurants(String location, String type);
 }

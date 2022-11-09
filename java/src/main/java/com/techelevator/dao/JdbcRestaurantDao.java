@@ -26,16 +26,14 @@ public class JdbcRestaurantDao implements RestaurantDao {
         String sql = "SELECT * from restaurants where city = ? OR zip_code = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location);
         List<Restaurant> restaurant = new ArrayList<>();
-        if(results.next()) {
+        while(results.next()) {
             restaurant.add(mapRowToRestaurants(results));
-        } else {
-            throw new RuntimeException("location "+location+" was not found.");
         }
         return restaurant;
     }
 
     @Override
-    public List<Restaurant> getRestaurantFilter(String location, String type) {
+    public List<Restaurant> getNearbyRestaurants(String location, String type) {
         String sql = "SELECT * from restaurants where city = ? OR zip_code = ? AND type = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location, type);
         List<Restaurant> restaurant = new ArrayList<>();
