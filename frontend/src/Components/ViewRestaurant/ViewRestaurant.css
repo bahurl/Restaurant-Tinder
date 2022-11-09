@@ -1,0 +1,71 @@
+.location--list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(94,62,23);
+    background: linear-gradient(0deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,1) 100%);
+}
+#location-label{
+    color: #d6b575;
+    font-weight: 600;
+}
+
+.search--bar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: auto;
+    border: 15px;
+    padding: 0px;
+    background: rgb(94,62,23);
+    background: linear-gradient(180deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,0.24693627450980393) 99%);
+}
+
+#location{
+    display: flex;
+    margin-bottom: 20px;
+    width: 257px;
+    height: 37px;
+    background-color: #d6b575;
+    border: 1px solid #000000;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.search--button{
+    text-align: center;
+    align-self: center;
+    padding: auto;
+    width: 100px;
+    height: 37px;
+    margin-bottom: 5px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FFFFFF;
+    border-radius: 10px;
+}
+
+.restaurant--details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    border-radius: 15px;
+    margin: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: #d6b575;
+    color: #36220b;
+}
+
+.restaurant--name{
+    font-weight: bold;
+}
+.restaurant--HoO{
+    font-weight: bold;
+}
+.information{
+    margin: 0px;
+}
