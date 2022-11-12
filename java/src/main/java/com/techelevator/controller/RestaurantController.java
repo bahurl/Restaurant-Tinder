@@ -23,7 +23,6 @@ public class RestaurantController {
         this.restaurantDao = restaurantDao;
     }
 
-
     @GetMapping(path = "search")
     private List<Restaurant> getRestaurants(@RequestParam(value = "location", defaultValue = "") String location, @RequestParam(value = "type", defaultValue = "") String type){
         if(type.isEmpty()){

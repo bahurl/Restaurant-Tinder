@@ -19,8 +19,6 @@ public class JdbcRestaurantDao implements RestaurantDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
-
     @Override
     public List<Restaurant> getNearbyRestaurants(String location) {
         String sql = "SELECT * from restaurants where city = ? OR zip_code = ?;";

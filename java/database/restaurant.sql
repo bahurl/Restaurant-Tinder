@@ -13,6 +13,7 @@ owner_id int NOT NULL,
 city varchar(200),
 zip_code varchar(5),
 selection int,
+invitation_date timestamp,
 invitation_link varchar(200) NOT NULL,
 CONSTRAINT PK_invitation_id PRIMARY KEY (invitation_id)
 );

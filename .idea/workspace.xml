@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a9cca22-2e39-4699-91cb-d8127e3bab00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/InviteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/InviteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcInviteDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/Invite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Invite/Invite.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Invite/Invite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/database/restaurant.sql" beforeDir="false" afterPath="$PROJECT_DIR$/java/database/restaurant.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/RestaurantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/RestaurantController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcRestaurantDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcRestaurantDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +31,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
