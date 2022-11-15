@@ -32,8 +32,8 @@ public class JdbcRestaurantDao implements RestaurantDao {
 
     @Override
     public List<Restaurant> getNearbyRestaurants(String location, String type) {
-        String sql = "SELECT * from restaurants where city = ? OR zip_code = ? AND type = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location, type);
+        String sql = "SELECT * from restaurants where upper(city) = ? OR zip_code = ? AND type = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location.toUpperCase(),location, type);
         List<Restaurant> restaurant = new ArrayList<>();
         if(results.next()) {
             restaurant.add(mapRowToRestaurants(results));

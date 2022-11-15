@@ -11,33 +11,9 @@ export default function ViewRestaurants(){
     const [isSearch, setIsSearch] = useState(false)
     async function getRestaurants(){
 
-        // const data = await axios.get(baseUrl+`/restaurant/search?location=${input.location}`)
-        // // const data = await res.json()
-        // setRestaurants(data.data);
-        // setIsSearch(true)
-
-        const queryURL = "https://cors-anywhere.herokuapp.com/corsdemo/https://api.yelp.com/v3/businesses/search";
-        const header = {params: { location: '33954', term: 'restaurant' },
-            headers: {
-            "accept": "application/json",
-            "x-requested-with": "xmlhttprequest",
-            "Access-Control-Allow-Origin":"*",
-            "Authorization": `Bearer ${process.env.REACT_APP_API_KEY}`}
-     }
-            const data = await axios.get(queryURL,header)
-            setRestaurants(data.data);
-            setIsSearch(true);
-
-
-    //     $.ajax({
-    //     url: queryURL,
-    //     method: "GET",
-    //     headers: {
-    //         "accept": "application/json",
-    //         "x-requested-with": "xmlhttprequest",
-    //         "Access-Control-Allow-Origin":"*",
-    //         "Authorization": `Bearer ${apiKey}`
-    //  },
+        const data = await axios.get(baseUrl+`/restaurant/search?location=${input.location}`)
+        setRestaurants(data.data);
+        setIsSearch(true)
 
     }
 
