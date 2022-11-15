@@ -31,5 +31,4 @@ public class RestaurantController {
             return restaurantDao.getNearbyRestaurants(location, type);
         }
     }
-
 }

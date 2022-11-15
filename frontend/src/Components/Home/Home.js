@@ -4,9 +4,12 @@ import axios from 'axios';
 import { Button } from 'bootstrap';
 import React from 'react';
 import ViewRestaurants from '../ViewRestaurant/ViewRestaurant';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-function Home(props) {
+function Home(props) {  
 
+    
 
     return(
         <div>
