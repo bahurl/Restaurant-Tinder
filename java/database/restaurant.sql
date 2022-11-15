@@ -1,8 +1,10 @@
+DROP TABLE IF EXISTS thumbs_up;
+DROP TABLE IF EXISTS restaurant_days;
 DROP TABLE IF EXISTS invitations;
 DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS days;
-DROP TABLE IF EXISTS restaurant_days;
-DROP TABLE IF EXISTS thumbs_up;
+
+
 
 
 /***************************************/
@@ -22,6 +24,8 @@ CONSTRAINT PK_invitation_id PRIMARY KEY (invitation_id)
 CREATE TABLE restaurants(
 restaurant_id serial NOT NULL,
 name varchar(200) NOT NULL,
+img_url varchar(200),
+rating float,
 type varchar(50) NOT NULL,
 address1 varchar(200) NOT NULL,
 address2 varchar(200),

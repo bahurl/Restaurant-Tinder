@@ -32,4 +32,9 @@ public class RestaurantController {
         }
     }
 
+    @PostMapping(path = "save")
+    private boolean create(@RequestBody List<Restaurant> restaurants){
+        return restaurantDao.createRestaurants(restaurants);
+    }
+
 }

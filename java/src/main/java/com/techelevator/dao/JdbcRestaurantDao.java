@@ -42,7 +42,15 @@ public class JdbcRestaurantDao implements RestaurantDao {
         }
         return restaurant;
     }
-
+    @Override
+    public boolean createRestaurants(List<Restaurant> restaurants){
+        String sql = "INSERT INTO restaurants (name, img_url, rating, type, address1, address2, address3, city, state, zip_code, phone)" +
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        for(Restaurant restaurant: restaurants){
+            jdbcTemplate.update(sql,restaurant.getName(), restaurant.getImgUrl(), restaurant.getRating(),restaurant.getType(),restaurant.getAddress1(), restaurant.getAddress2(),restaurant.getAddress3(), restaurant.getCity(),restaurant.getState(), restaurant.getZipCode(),restaurant.getPhone());
+        }
+        return true;
+    }
     private Restaurant mapRowToRestaurants(SqlRowSet rs) {
         Restaurant restaurant = new Restaurant();
         restaurant.setRestaurantId(rs.getInt("restaurant_id"));
@@ -53,9 +61,13 @@ public class JdbcRestaurantDao implements RestaurantDao {
         restaurant.setState(rs.getString("state"));
         restaurant.setName(rs.getString("name"));
         restaurant.setZipCode(rs.getString("zip_code"));
+        restaurant.setPhone(rs.getString("phone"));
+        restaurant.setImgUrl(rs.getString("img_url"));
+        restaurant.setRating(rs.getFloat("rating"));
         restaurant.setOpenHour(rs.getString("open_hour"));
         restaurant.setCloseHour(rs.getString("close_hour"));
         restaurant.setType(rs.getString("type"));
         return restaurant;
     }
+
 }
