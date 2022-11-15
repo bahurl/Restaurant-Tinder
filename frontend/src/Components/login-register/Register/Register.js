@@ -1,8 +1,8 @@
 import axios from 'axios'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import { baseUrl } from '../../Shared/baseUrl'
-import './Register.css'
+import { baseUrl } from '../../../Shared/baseUrl'
+import '../login-register.css'
 
 class Register extends Component{
 
@@ -92,45 +92,47 @@ class Register extends Component{
         return(
             <div className='register'>
                 <h1>Create Account</h1>
-                <label id="username--box" class="sr-only">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    class="form-control"
-                    placeholder="Username"
-                    v-model="user.username"
-                    value={this.username}
-                    onChange={this.handleInputChange}
-                    required
-                />
-                <label id="password--box" class="sr-only">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control"
-                    placeholder="Password"
-                    v-model="user.password"
-                    value={this.password}
-                    onChange={this.handleInputChange}
-                    required
-                />
-                <label id="password--box" class="sr-only">Password</label>
-                <input
-                    type="password"
-                    id="password-confirm"
-                    name="confirmPassword"
-                    class="form-control"
-                    placeholder="Confirm Password"
-                    v-model="user.password"
-                    onChange={this.handleInputChange}
-                    required
-                />
-                <div id="sign-in--register">
-                    <Link id='register-btn' to="/login">Have an account?</Link>
-                    <button id='sign-in-btn' type="submit" onClick={this.handleSubmit}>Sign up</button>
-                </div>
+                <div className='login-register'>
+                    <label id="username--box" class="sr-only">Username</label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        class="form-control"
+                        placeholder="Username"
+                        v-model="user.username"
+                        value={this.username}
+                        onChange={this.handleInputChange}
+                        required
+                    />
+                    <label id="password--box" class="sr-only">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Password"
+                        v-model="user.password"
+                        value={this.password}
+                        onChange={this.handleInputChange}
+                        required
+                    />
+                    <label id="password--box" class="sr-only">Password</label>
+                    <input
+                        type="password"
+                        id="password-confirm"
+                        name="confirmPassword"
+                        class="form-control"
+                        placeholder="Confirm Password"
+                        v-model="user.password"
+                        onChange={this.handleInputChange}
+                        required
+                    />
+                    <div id="sign-in--register">
+                        <Link id='register-btn' to="/login">Have an account?</Link>
+                        <button id='sign-in-btn' type="submit" onClick={this.handleSubmit}>Sign up</button>
+                    </div>
+                </div>            
             </div>
         )
     }
