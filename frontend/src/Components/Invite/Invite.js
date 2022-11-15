@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
+import { User } from '../../Redux/user';
 import { baseUrl } from '../../Shared/baseUrl';
+import {nanoid} from "nanoid"
 import './Invite.css';
 
 
@@ -13,7 +15,8 @@ function Invite(props) {
         }
     )
 
-    const [inviteLink, setInviteLink] = React.useState(false)
+    const [displayInvite, setDisplayInvite] = React.useState(false);
+    const [inviteLink, setInviteLink] = React.useState("www.google.com");
 
     function handleInputChange(event) {
         event.preventDefault()
@@ -27,24 +30,37 @@ function Invite(props) {
     }
 
     function handleSubmit() {
-         //axios.post(baseUrl + `/invite?location=${formData.location}&dateTime=${formData.datetime}`)
-        //         .then((response) => {
-        //             alert("Account successfully created!");
-        //         })
-        //         .catch((error) => {
-        //             alert("Email address is already in use.");
-        //         });
-        setInviteLink(oldInvite => !oldInvite);
+        //alert(`${props.user.id} ${formData.location} ${formData.datetime} ${nanoid()}`)
+
+        const isNum = /^\d+$/.test(formData.location);
+        
+        const invite = {
+            ownerId: props.user.id,
+            [isNum ? 'zipCode' : 'city']: formData.location,
+            invitationDate: formData.datetime,
+            invitationLink: `http://localhost:3000/home/${nanoid()}`
+        } 
+
+        alert(invite.inviteLink)
+        
+        axios.post(baseUrl + "/invite/create", invite)
+                .then((response) => {
+                    setInviteLink(invite.invitationLink)
+                })
+                .catch((error) => {
+                    alert(error);
+                });
+        setDisplayInvite(oldInvite => !oldInvite);
     }
 
     return(
         <div className='invite'>
             <h1 className='title'>Invite your friends out to eat.</h1>
 
-            {inviteLink ? 
+            {displayInvite ? 
             <div>
                 <h2>Invitation Link</h2> 
-                <input type="text" value="www.google.com"></input>
+                <input type="text" value={inviteLink}></input>
             </div>
             :  
             <div className='location-datetime'>

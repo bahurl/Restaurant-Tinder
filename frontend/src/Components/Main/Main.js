@@ -36,9 +36,9 @@ class Main extends Component {
                 {this.props.token.token !== undefined ?
                         <div>
                             <Link to='/home'>Home | </Link>
+                            <Link to='/invite'>Invite | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
-
                         </div>  
                     : 
                         <Link to='/login'>Home | </Link>
@@ -46,7 +46,8 @@ class Main extends Component {
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
-                    <Route path='/invite'component={() => <Invite/>}/>
+                    <Route path='/invite'component={this.props.token.token !== undefined ? () => <Invite user={this.props.user}/> : null}/>
+                    <Route path='/home/:route' component={() => <Home/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>
