@@ -3,6 +3,8 @@ import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import { baseUrl } from '../../../Shared/baseUrl'
 import '../login-register.css'
+import logo from "../../../logo/Restaurant-Tinder-1.png"
+
 
 class Register extends Component{
 
@@ -91,9 +93,10 @@ class Register extends Component{
     render(){
         return(
             <div className='register'>
-                <h1>Create Account</h1>
+                <img className='logo' src={logo} />
+                <h1 className='create-login'>Create Account</h1>
                 <div className='login-register'>
-                    <label id="username--box" class="sr-only">Username</label>
+                    <label id="username--box" className="sr-only">Username</label>
                     <input
                         type="text"
                         id="username"
@@ -105,7 +108,7 @@ class Register extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
-                    <label id="password--box" class="sr-only">Password</label>
+                    <label id="password--box" className="sr-only">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -117,7 +120,7 @@ class Register extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
-                    <label id="password--box" class="sr-only">Password</label>
+                    <label id="password--box" className="sr-only">Password</label>
                     <input
                         type="password"
                         id="password-confirm"
@@ -129,7 +132,7 @@ class Register extends Component{
                         required
                     />
                     <div id="sign-in--register">
-                        <Link id='register-btn' to="/login">Have an account?</Link>
+                        <Link className='register-btn' to="/login">Have an account?</Link>
                         <button id='sign-in-btn' type="submit" onClick={this.handleSubmit}>Sign up</button>
                     </div>
                 </div>            

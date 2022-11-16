@@ -55,7 +55,7 @@ class Login extends Component {
         return(
             <div className='login'>
                 <img className='logo' src={logo} />
-                <h1 id='message-login'>Please Sign In</h1>
+                <h1 className='create-login'>Please Sign In</h1>
                 <div className='login-register'>
                     {this.state.invalid && <p id='invalid-login'>Invalid username/Password</p>}
                     <label id="username--box" class="sr-only">Username</label>
@@ -81,7 +81,7 @@ class Login extends Component {
                         required
                     />
                     <div id="sign-in--register">
-                        <Link id='register-btn' to="/register">Need an account?</Link>       
+                        <Link className='register-btn' to="/register">Need an account?</Link>       
                         <button id='sign-in-btn' type="submit" onClick={this.handleLogin}>Sign in</button>
                     </div>
                 </div>                
