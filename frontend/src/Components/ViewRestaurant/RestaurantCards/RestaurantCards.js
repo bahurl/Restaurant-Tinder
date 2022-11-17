@@ -1,5 +1,6 @@
 import Accordion from 'react-bootstrap/Accordion';
 import React from 'react';
+import ThumbsUpDown from '../../ThumbsUpDown/ThumbsUpDown';
 
 
 export default function RestaurantCards(props){
@@ -23,6 +24,9 @@ export default function RestaurantCards(props){
             
             <div className='isOpen-div'>
                 {isOpen ? (<h3 className='isOpen'>Open</h3>) : (<h3 className='isOpen'>closed</h3>) }
+            </div>
+            <div className='ThumbsUpDown'>
+                <ThumbsUpDown/>
             </div>
         </div>
     )
