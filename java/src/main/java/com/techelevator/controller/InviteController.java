@@ -1,3 +1,4 @@
+
 package com.techelevator.controller;
 
 import com.techelevator.dao.InviteDao;
@@ -36,7 +37,5 @@ public class InviteController {
             return inviteDao.getInviteByLinkId(id);
         }
     }
-
-
 }
 

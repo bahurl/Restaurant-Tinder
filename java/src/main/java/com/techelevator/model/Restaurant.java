@@ -1,16 +1,22 @@
 package com.techelevator.model;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Restaurant {
     private int restaurantId;
+    @JsonProperty("image_url")
+    private String imgUrl;
+    private float rating;
     private String Address1;
     private String Address2;
     private String Address3;
     private String city;
     private String state;
-    private String name;  
+    private String name;
+    @JsonProperty("zip_code")
     private String zipCode;
+    private String phone;
     private String openHour;
     private String closeHour;
     private String type;
@@ -114,4 +120,28 @@ public class Restaurant {
     public String getType() { return type; }
 
     public void setType(String type) { this.type = type; }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

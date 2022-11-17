@@ -69,3 +69,18 @@
 .information{
     margin: 0px;
 }
+
+.restaurant-card{
+    background-color: #D9C07F;
+    display: flex;
+    border-radius: 10px;
+}
+
+.img-container{
+    width: 30%;
+    height: 30%;
+}
+
+.restaurant-img{
+    object-fit: cover;
+}

@@ -11,7 +11,6 @@ function Home(props) {
 
     return(
         <div>
-            <p>if you can see this your logged in</p>
             <ViewRestaurants />
         </div>
     );

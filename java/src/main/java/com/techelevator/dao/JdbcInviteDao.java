@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
-
 import static java.lang.Integer.parseInt;
 
 @Component
@@ -73,3 +72,4 @@ public class JdbcInviteDao implements InviteDao {
         return invite;
     }
 }
+

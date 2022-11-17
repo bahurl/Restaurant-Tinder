@@ -1,14 +1,14 @@
 import {Component} from 'react'
-import {Switch, Route, Redirect, Link, useParams} from 'react-router-dom'
-import Login from '../Login/Login'
-import Register from '../Register/Register'
+import {Switch, Route, Redirect, Link} from 'react-router-dom'
+import Login from '../login-register/Login/Login'
+import Register from '../login-register/Register/Register'
 import Home from '../Home/Home'
 import Invite from '../Invite/Invite'
 import Vote from '../Vote/Vote'
 import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import ViewRestaurants from '../ViewRestaurant/ViewRestaurant'
+import './main.css'
 
 const mapStateToProps = state => {
     return {
@@ -35,15 +35,13 @@ class Main extends Component {
     render(){
         return(
             <div>
-                {this.props.token.token !== undefined ?
-                        <div>
+                {this.props.token.token !== undefined &&
+                        <div className='nav'>
                             <Link to='/home'>Home | </Link>
                             <Link to='/invite'>Invite | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
                         </div>  
-                    : 
-                        <Link to='/login'>Home | </Link>
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>

@@ -31,4 +31,10 @@ public class RestaurantController {
             return restaurantDao.getNearbyRestaurants(location, type);
         }
     }
+
+    @PostMapping(path = "save")
+    private boolean create(@RequestBody List<Restaurant> restaurants){
+        return restaurantDao.createRestaurants(restaurants);
+    }
+
 }
