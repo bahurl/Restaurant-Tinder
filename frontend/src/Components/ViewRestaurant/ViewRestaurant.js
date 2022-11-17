@@ -6,6 +6,7 @@ import { Token } from "../../Redux/token";
 import './ViewRestaurant.css'
 import RestaurantCards from "./RestaurantCards/RestaurantCards";
 
+
 export default function ViewRestaurants(){
     const [restaurants, setRestaurants] = useState([]);
     const [input, setInput] = useState({location:"", type: ""});

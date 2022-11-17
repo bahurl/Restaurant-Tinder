@@ -38,6 +38,23 @@ public class JdbcInviteDao implements InviteDao {
         }
     }
 
+    @Override
+    public Invite getInviteByLinkId(String id) {
+        Invite invite = null;
+        String sql = "SELECT * from invitations where invitation_link = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        if (results.next()) {
+            invite = mapRowToInvite(results);
+
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            LocalDateTime inviteDateTime = invite.getInvitationDate();
+            if (currentDateTime.isAfter(inviteDateTime)) {
+                invite = null;
+            }
+        }
+        return invite;
+    }
+
 
     private Invite mapRowToInvite(SqlRowSet rs) {
         Invite invite = new Invite();

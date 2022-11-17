@@ -33,24 +33,23 @@ function Invite(props) {
         //alert(`${props.user.id} ${formData.location} ${formData.datetime} ${nanoid()}`)
 
         const isNum = /^\d+$/.test(formData.location);
+        const inviteId = nanoid();
         
         const invite = {
             ownerId: props.user.id,
             [isNum ? 'zipCode' : 'city']: formData.location,
             invitationDate: formData.datetime,
-            invitationLink: `http://localhost:3000/home/${nanoid()}`
+            invitationLink: inviteId
         } 
-
-        alert(invite.inviteLink)
         
         axios.post(baseUrl + "/invite/create", invite)
                 .then((response) => {
-                    setInviteLink(invite.invitationLink)
+                    setInviteLink(`http://localhost:3000/vote/${inviteId}`)
+                    setDisplayInvite(oldInvite => !oldInvite);
                 })
                 .catch((error) => {
                     alert(error);
                 });
-        setDisplayInvite(oldInvite => !oldInvite);
     }
 
     return(
@@ -58,9 +57,10 @@ function Invite(props) {
             <h1 className='title'>Invite your friends out to eat.</h1>
 
             {displayInvite ? 
-            <div>
+            <div className='invite'>
                 <h2>Invitation Link</h2> 
                 <input type="text" value={inviteLink}></input>
+                <button className='s' onClick={() => setDisplayInvite(oldInvite => !oldInvite)}>{"Invite Another Friend"}</button>      
             </div>
             :  
             <div className='location-datetime'>
@@ -74,7 +74,7 @@ function Invite(props) {
                         value={formData.location}
                         onChange={handleInputChange}
                         required
-                    />
+                />
                 <label className='datetime-label'>Decision date and time</label>
                     <input
                         className='datetime-input'
@@ -84,11 +84,10 @@ function Invite(props) {
                         value={formData.datetime}
                         onChange={handleInputChange}
                         required
-                    />
+                />
+                <button className='submit' type="submit" onClick={handleSubmit}>Invite</button>      
             </div>
             }
-        
-            <button className='submit' type="submit" onClick={handleSubmit}>{inviteLink ? "Invite Another Friend": "Invite"}</button>      
         </div>
     );
 }
