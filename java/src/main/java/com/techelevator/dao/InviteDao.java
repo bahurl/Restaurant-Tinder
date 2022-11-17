@@ -6,5 +6,6 @@ import java.time.LocalDateTime;
 
 public interface InviteDao {
 
-    public void createInvite(Invite invite);
+    void createInvite(Invite invite);
+    Invite getInviteByLinkId(String id);
 }
