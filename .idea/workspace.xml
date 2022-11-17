@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a9cca22-2e39-4699-91cb-d8127e3bab00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/InviteNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Invite/Invite.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Invite/Invite.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Components/Main/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Components/Main/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/InviteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/InviteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/InviteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/InviteDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcInviteDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcInviteDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
