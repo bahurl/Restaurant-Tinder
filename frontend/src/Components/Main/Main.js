@@ -36,9 +36,9 @@ class Main extends Component {
             <div>
                 {this.props.token.token !== undefined &&
                         <div className='nav'>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/invite'>Invite | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
+                            <Link className='link' to='/home'>Home</Link>
+                            <Link className='link' to='/invite'>Invite</Link>
+                            <Link className='link' to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
                         </div>  
                 }

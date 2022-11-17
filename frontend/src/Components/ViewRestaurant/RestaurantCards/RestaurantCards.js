@@ -7,15 +7,16 @@ export default function RestaurantCards(props){
    const isOpen= props.data.isOpen
     return(
         <div className='restaurant-card'>
-            <h3 className='restaurant-type'>{item.type}</h3>
+            <h3 className='restaurant-type'>{item.name}</h3>
             <div className='img-container'>
             <img className='restaurant-img' src={item.image_url} /> 
             </div>
             <div className='restaurant-info'>
-                <h2 className='restaurant-name'>{item.name}</h2>
-                <h4>{`${item.address1}`}</h4>
-                {item.address2!==null && (<h4>{item.address2}</h4>)}
-                {item.address3!==null && (<h4>{item.address3}</h4>)}
+                <h6 className='restaurant-name'>{item.type}</h6>
+                <p>{`${item.address1}`}</p>
+                {item.address2!==null && (<p>{item.address2}</p>)}
+                {item.address3!==null && (<p>{item.address3}</p>)}
+                <p>{item.city} {item.state}, {item.zip_code}</p>
             </div>
             <div className='tel-div'>
                 {item.phone && <a className='phone' href ={`tel:${item.phone}`}>Call to order</a>}            

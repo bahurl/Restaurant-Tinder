@@ -38,7 +38,7 @@ export default function ViewRestaurants(){
             }
         }
         return(
-            <RestaurantCards data={item} isOpen={isOpen}/>
+            <RestaurantCards data={item} isOpen={isOpen} key={item.restaurant_id}/>
 
         // <div className="restaurant--details">
             
@@ -57,15 +57,21 @@ export default function ViewRestaurants(){
     )})
 
     return (
+
         <div className="location--list">
             <div className="search--bar">
                 <label id="location-label" >Location</label>
                 <input id="location" name="location" type="text" placeholder="Enter City or Zip Code" onChange={handleInput} />
                 <button onClick={getRestaurants} className="search--button">Search</button>
             </div>
+            <div className="list-cards">
+               {isSearch && restaurantDisplay}
+            </div>
+        </div>    
             
-            {isSearch && restaurantDisplay}
-        </div>
+
+        
+        
 
     )
 }
