@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS thumbs_up;
+DROP TABLE IF EXISTS thumbs_down;
 DROP TABLE IF EXISTS restaurant_days;
 DROP TABLE IF EXISTS invitations;
 DROP TABLE IF EXISTS restaurants;
@@ -67,7 +68,16 @@ CONSTRAINT PK_thumbs_up_id PRIMARY KEY (thumbs_up_id),
 CONSTRAINT FK_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id),
 CONSTRAINT FK_invitation_id FOREIGN KEY (invitation_id) REFERENCES invitations(invitation_id)
 );
-
+/***************************************/
+/***************************************/
+CREATE TABLE thumbs_down(
+thumbs_down_id serial NOT NULL,
+invitation_id int NOT NULL,
+restaurant_id int NOT NULL,
+CONSTRAINT PK_thumbs_down_id PRIMARY KEY (thumbs_down_id),
+CONSTRAINT FK_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id),
+CONSTRAINT FK_invitation_id FOREIGN KEY (invitation_id) REFERENCES invitations(invitation_id)
+);
 /***************************************/
 /***************************************/
 
