@@ -53,7 +53,7 @@ function Invite(props) {
     }
 
     return(
-        <div className='invite'>
+        <div className='invite-div'>
             <h1 className='title'>Invite your friends out to eat.</h1>
 
             {displayInvite ? 

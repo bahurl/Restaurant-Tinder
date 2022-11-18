@@ -38,7 +38,7 @@
     text-align: center;
 }
 
-.search--button{
+.search--button, .thumbs-button{
     text-align: center;
     align-self: center;
     padding: auto;
@@ -84,8 +84,8 @@
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-areas:
     "type type type"
-    "image info info"
-    "image info info"
+    "image info ."
+    "image info ."
     "tel . open";
     column-gap: 5px;
     border-radius: 10px;
@@ -116,6 +116,7 @@
 
 .restaurant-info{
     grid-area: info;
+    text-align: center;
 }
 
 .restaurant-info p{

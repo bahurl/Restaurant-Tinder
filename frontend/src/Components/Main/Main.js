@@ -13,9 +13,11 @@ import './main.css'
 const mapStateToProps = state => {
     return {
         token: state.token,
-        user: state.user
+        user: state.user,
+        home: true
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },

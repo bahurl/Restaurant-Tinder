@@ -8,12 +8,13 @@
 
 }
 
-.link:hover{
+.link:hover, .default, .link:active{
     padding-left: 10px;
     padding-right: 10px;
-    background: linear-gradient(180deg, rgba(214,181,117,0.24693627450980393)99%, rgba(152,105,49,1) 69%,  rgba(94,62,23,1) 0%); ;
+    background: linear-gradient(180deg, rgba(214,181,117,0.24693627450980393)99%, rgba(152,105,49,1) 69%,  rgba(94,62,23,1) 0%);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    color: yellow;
 }
 
 .link{
@@ -22,7 +23,4 @@
     text-decoration: none;
     font-style: none;
     color: yellow;
-}
-.link:active{
-    
 }

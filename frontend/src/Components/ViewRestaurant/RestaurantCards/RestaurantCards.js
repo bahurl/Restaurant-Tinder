@@ -7,7 +7,7 @@ export default function RestaurantCards(props){
    const item = props.data
    const isOpen= props.data.isOpen
     return(
-        <div className='restaurant-card'>
+        <div className='restaurant-card' key={props.key}>
             <h3 className='restaurant-type'>{item.name}</h3>
             <div className='img-container'>
             <img className='restaurant-img' src={item.image_url} /> 
