@@ -47,7 +47,7 @@ export default function ViewRestaurants(){
         <div className="location--list">
             <div className="search--bar">
                 <label id="location-label" >Location</label>
-                <input id="location" name="location" type="text" placeholder="Enter City or Zip Code" onChange={handleInput} />
+                <input className='input' id="location" name="location" type="text" placeholder="Enter City or Zip Code" onChange={handleInput} />
                 <button onClick={getRestaurants} className="search--button">Search</button>
             </div>
             <div className="list-cards">

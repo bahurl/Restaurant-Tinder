@@ -36,7 +36,7 @@ class Main extends Component {
 
     render(){
         return(
-            <div>
+            <div >
                 {this.props.token.token !== undefined &&
                         <div className='nav'>
                             <Link className='link' to='/home'>Home</Link>
