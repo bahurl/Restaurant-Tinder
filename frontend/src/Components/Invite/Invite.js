@@ -53,9 +53,8 @@ function Invite(props) {
     }
 
     return(
-        <div className='invite'>
+        <div className='invite-div'>
             <h1 className='title'>Invite your friends out to eat.</h1>
-
             {displayInvite ? 
             <div className='invite'>
                 <h2>Invitation Link</h2> 
@@ -64,9 +63,9 @@ function Invite(props) {
             </div>
             :  
             <div className='location-datetime'>
-                <label className='location'>Restaurant location</label>
+                <label className='location-label'>Restaurant location:</label>
                     <input
-                        className='location-input'
+                        className='location-input input'
                         type="text"
                         id="location"
                         name="location"
@@ -77,7 +76,7 @@ function Invite(props) {
                 />
                 <label className='datetime-label'>Decision date and time</label>
                     <input
-                        className='datetime-input'
+                        className='datetime-input input'
                         type="datetime-local"
                         id="datetime"
                         name="datetime"

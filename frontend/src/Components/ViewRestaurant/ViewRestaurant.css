@@ -12,6 +12,8 @@
 }
 
 .search--bar{
+    position: fixed;
+    top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,7 +26,7 @@
     background: linear-gradient(180deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,0.24693627450980393) 99%);
 }
 
-#location{
+.input{
     display: flex;
     margin-bottom: 20px;
     width: 257px;
@@ -34,9 +36,10 @@
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     text-align: center;
+    color:gray;
 }
 
-.search--button{
+.search--button, .thumbs-button{
     text-align: center;
     align-self: center;
     padding: auto;
@@ -47,7 +50,11 @@
     border-radius: 10px;
 }
 
-.restaurant--details{
+.list-cards{
+    margin-top: 153px;
+}
+
+/* .restaurant--details{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,19 +75,71 @@
 }
 .information{
     margin: 0px;
-}
+} */
 
+
+/* Card Style */
 .restaurant-card{
     background-color: #D9C07F;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-areas:
+    "type type type"
+    "image info ."
+    "image info ."
+    "tel . open";
+    column-gap: 5px;
     border-radius: 10px;
+    height: 200px;
+    padding: 10px 10px 0px 10px;
+    margin: 10px;
+}
+
+.restaurant-type{
+    grid-area: type;
+    display: block;
+    justify-self: center;
 }
 
 .img-container{
-    width: 30%;
-    height: 30%;
+    grid-area: image;
+    border-radius: 10px;
+    width:150px;
+    height: 100px;
 }
 
 .restaurant-img{
     object-fit: cover;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+.restaurant-info{
+    grid-area: info;
+    text-align: center;
+}
+
+.restaurant-info p{
+    margin:0;
+    font-size: smaller;
+
+}
+
+.tel-div{
+    grid-area: tel;
+    display: flex;
+    align-items: flex-end;
+}
+.phone{
+    text-decoration: none;
+    font-style: none;
+    color: #FFFFFF;
+    background-color: #81613B;
+    border-radius: 25% 10%;
+    padding: 10px;
+}
+
+.isOpen-div{
+    grid-area: open;
 }

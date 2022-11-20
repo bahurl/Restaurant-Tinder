@@ -13,9 +13,11 @@ import './main.css'
 const mapStateToProps = state => {
     return {
         token: state.token,
-        user: state.user
+        user: state.user,
+        home: true
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => ({
     addToken: () => { dispatch(addToken()) },
@@ -34,12 +36,12 @@ class Main extends Component {
 
     render(){
         return(
-            <div>
+            <div >
                 {this.props.token.token !== undefined &&
                         <div className='nav'>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/invite'>Invite | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
+                            <Link className='link' to='/home'>Home</Link>
+                            <Link className='link' to='/invite'>Invite</Link>
+                            <Link className='link' to='/login' onClick={this.handleLogout}>logout</Link> 
                             <Redirect to='/home'/>
                         </div>  
                 }

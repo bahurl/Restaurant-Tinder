@@ -43,8 +43,8 @@ export default function ThumbsUpDown(){
 
     return(
         <div>
-            <button onClick={handleUpClick}><FaThumbsUp />{`${countUp === 0 ? '' : countUp}`}</button>
-            <button onClick={handleDownClick}><FaThumbsDown />{`${countDown === 0 ? '' : countDown}`}</button>
+            <button className='thumbs-button' onClick={handleUpClick}><FaThumbsUp />{`${countUp === 0 ? '' : countUp}`}</button>
+            <button className='thumbs-button' onClick={handleDownClick}><FaThumbsDown />{`${countDown === 0 ? '' : countDown}`}</button>
         </div>
     )
 }
