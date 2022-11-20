@@ -8,6 +8,8 @@ export default function ThumbsUpDown(){
     const [thumbsUp, setThumbsUp] = useState(false)
     const [thumbsDown, setThumbsDown] = useState(false)
 
+    
+
     const handleUpClick = event => {
         if(!thumbsUp && thumbsDown){
             setCountUp(countUp + 1)

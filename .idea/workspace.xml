@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a9cca22-2e39-4699-91cb-d8127e3bab00" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/controller/ThumbsUpDownController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/JdbcThumbsUpDownDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/database/restaurant.sql" beforeDir="false" afterPath="$PROJECT_DIR$/java/database/restaurant.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/ThumbsUpDownDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/dao/ThumbsUpDownDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/ThumbsUpDown.java" beforeDir="false" afterPath="$PROJECT_DIR$/java/src/main/java/com/techelevator/model/ThumbsUpDown.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
