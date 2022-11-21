@@ -5,7 +5,7 @@ import ThumbsUpDown from '../../ThumbsUpDown/ThumbsUpDown';
 
 export default function RestaurantCards(props){
    const item = props.data
-   const isOpen= props.data.isOpen
+   const isOpen = props.data.isOpen
     return(
         <div className='restaurant-card' key={props.key}>
             <h3 className='restaurant-type'>{item.name}</h3>
@@ -27,7 +27,7 @@ export default function RestaurantCards(props){
                 {isOpen ? (<h3 className='isOpen'>Open</h3>) : (<h3 className='isOpen'>closed</h3>) }
             </div>
             <div className='ThumbsUpDown'>
-                <ThumbsUpDown/>
+             {props.isVote && <ThumbsUpDown restaurantId={props.data.restaurantId} inviteId={props.inviteId}/>}
             </div>
         </div>
     )

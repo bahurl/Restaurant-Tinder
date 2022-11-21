@@ -46,7 +46,8 @@ function Vote(props) {
             }
         }
         return(
-            <RestaurantCards data={item} isOpen={isOpen}/>
+            <RestaurantCards isVote={true} data={item} isOpen={isOpen}
+            restaurantId={item.restaurantId} inviteId={props.inviteId}/>
 
         // <div className="restaurant--details">
             

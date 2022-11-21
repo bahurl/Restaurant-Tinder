@@ -39,7 +39,7 @@ export default function ViewRestaurants(){
             }
         }
         return(
-            <RestaurantCards data={item} isOpen={isOpen} key={item.restaurant_id}/>
+            <RestaurantCards isVote={false} data={item} isOpen={isOpen} key={item.restaurant_id}/>
     )})
 
     return (

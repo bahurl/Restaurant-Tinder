@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 
 
-export default function ThumbsUpDown(){
+export default function ThumbsUpDown(props){
+    const restaurantId = props.restaurantId
+    const inviteId = props.inviteId
+
     const [countUp, setCountUp] = useState(0)
     const [countDown, setCountDown] = useState(0)
     const [thumbsUp, setThumbsUp] = useState(false)
