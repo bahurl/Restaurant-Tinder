@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@RequestMapping(path = "votes/")
 public class ThumbsUpDownController {
 
     @Autowired
