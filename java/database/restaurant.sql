@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS vote;
 DROP TABLE IF EXISTS thumbs_up;
 DROP TABLE IF EXISTS thumbs_down;
 DROP TABLE IF EXISTS restaurant_days;
@@ -93,7 +94,15 @@ VALUES
 
 /***************************************/
 /***************************************/
-
+CREATE TABLE vote(
+restaurant_id int NOT NULL,
+invite_id int  NOT NULL,
+thumbs_up int,
+thumbs_down int,
+CONSTRAINT PK_vote PRIMARY KEY (restaurant_id, invite_id),
+CONSTRAINT FK_restaurant_id  FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id),
+CONSTRAINT FK_invite_id  FOREIGN KEY (invite_id) REFERENCES invitations(invitation_id)
+);
 
 
 
