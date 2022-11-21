@@ -10,6 +10,10 @@ function Vote(props) {
     const[invite, setInvite] = React.useState({})
     const[validLink, setValidLink] = React.useState()
     const[restaurants, setRestaurants] = React.useState([])  
+    const[restaurantIds, setRestaurantIds] = React.useState([])
+    const[vote, setVote] = React.useState([])
+
+    
 
     React.useEffect(() => {
             const getInvite = async () => {
@@ -28,9 +32,53 @@ function Vote(props) {
                 const restaurant = await axios.get(baseUrl+`/restaurant/search?location=${invite.zipCode !== null ? invite.zipCode : invite.city}`);
                 setRestaurants(restaurant.data);
             }
-            getRestaurants();
+            getRestaurants() 
+            getIds();
     }, [validLink]);
 
+    React.useEffect(() =>{
+        saveVotes();
+    },[votes])
+
+    function getIds(){
+            setRestaurantIds(restaurants.map(item =>{
+            item.restaurantId;
+        }))  
+    }
+
+    async function getVotes(){
+        const config = {
+            body: {restaurantIds:{restaurantIds}, invitationId:{invite.invitation_id}}
+        }
+        const data = axios.get(baseUrl + 'votes/vote', config)
+        setVote(data.data)
+        if(data.data === null){
+            for(restaurantId : restaurantIds){
+                config = {
+                    body: {ThumbsUpDown:{restaurantId:{restaurantId},invitationId:{invite.invitation_id}, thumbs_up:0, thumbs_down:0}}
+                }
+                const createVote = axios.post(baseUrl + 'votes/create', config);
+            }
+            
+        }
+    }
+    
+    async function saveVotes(){
+        for(restaurantId : restaurantIds){
+            config = {
+                body: {ThumbsUpDown:{restaurantId:{restaurantId},invitationId:{invite.invitation_id}, thumbs_up:0, thumbs_down:0}}
+            }
+            const createVote = axios.post(baseUrl + 'votes/save', config);
+        }
+    }
+     
+    function updateVote(event, restaurantId){
+        const findRestaurant = votes.map(item =>{
+            item.restaurant_id;
+        }
+        )
+        const voteIndex = findRestaurant.indexOf(restaurantId);
+    }
 
     const restaurantDisplay = restaurants.map(item =>{  
         const isOpen = () => { 
