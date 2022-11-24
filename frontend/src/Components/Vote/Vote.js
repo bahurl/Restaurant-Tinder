@@ -38,43 +38,51 @@ function Vote(props) {
 
     React.useEffect(() =>{
         saveVotes();
-    },[votes])
+    },[vote])
 
     function getIds(){
             setRestaurantIds(restaurants.map(item =>{
-            item.restaurantId;
+                let id = item.restaurantId
+            return id;
         }))  
     }
 
     async function getVotes(){
+        const invitationId = invite.invitationId
         const config = {
-            body: {restaurantIds:{restaurantIds}, invitationId:{invite.invitation_id}}
+            body: {restaurantIds:restaurantIds, invitationId:invitationId}
         }
+        
         const data = axios.get(baseUrl + 'votes/vote', config)
         setVote(data.data)
         if(data.data === null){
-            for(restaurantId : restaurantIds){
+            for( let i = 0; i< restaurantIds.length ; i++){
+                let restaurantId = restaurantIds[i];
                 config = {
-                    body: {ThumbsUpDown:{restaurantId:{restaurantId},invitationId:{invite.invitation_id}, thumbs_up:0, thumbs_down:0}}
+                    body: {ThumbsUpDown:{restaurantId:restaurantId,invitationId: invitationId, thumbs_up:0, thumbs_down:0}}
                 }
-                const createVote = axios.post(baseUrl + 'votes/create', config);
+                const singleVote = axios.post(baseUrl + 'votes/create', config);
+                setVote(prev => ([...prev, singleVote.data]))
             }
             
         }
     }
     
     async function saveVotes(){
-        for(restaurantId : restaurantIds){
-            config = {
-                body: {ThumbsUpDown:{restaurantId:{restaurantId},invitationId:{invite.invitation_id}, thumbs_up:0, thumbs_down:0}}
+        const invitationId = invite.invitationId
+        for(let i = 0 ; i< restaurantIds.length ; i++){
+            let restaurantId = restaurantIds[i];
+            const config = {
+                body: {ThumbsUpDown:{restaurantId:restaurantId,invitationId:invitationId, thumbs_up:0, thumbs_down:0}}
             }
-            const createVote = axios.post(baseUrl + 'votes/save', config);
+            await axios.post(baseUrl + 'votes/save', config);
         }
     }
      
-    function updateVote(event, restaurantId){
-        const findRestaurant = votes.map(item =>{
-            item.restaurant_id;
+    function updateVote( restaurantId){
+        const findRestaurant = vote.map(item =>{
+          let id = item.restaurant_id;
+            return id;
         }
         )
         const voteIndex = findRestaurant.indexOf(restaurantId);
