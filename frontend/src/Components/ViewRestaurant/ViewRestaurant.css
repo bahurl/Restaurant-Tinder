@@ -3,11 +3,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(94,62,23);
-    background: linear-gradient(0deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,1) 100%);
+    background: rgba(255, 255, 255, 0.705);
+    background-size: 800% 800%;
+
+    animation: list-background 32s ease infinite;
+}
+@keyframes list-background {
+    0%{background-position:51% 0%}
+    50%{background-position:50% 100%}
+    100%{background-position:51% 0%}
 }
 #location-label{
-    color: #d6b575;
+    color: #aef5d5;
     font-weight: 600;
 }
 
@@ -22,8 +29,7 @@
     margin: auto;
     border: 15px;
     padding: 0px;
-    background: rgb(94,62,23);
-    background: linear-gradient(180deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,0.24693627450980393) 99%);
+    background: transparent;
 }
 
 .input{
@@ -31,7 +37,7 @@
     margin-bottom: 20px;
     width: 257px;
     height: 37px;
-    background-color: #d6b575;
+    background-color: #c1aef5;
     border: 1px solid #000000;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -46,7 +52,7 @@
     width: 100px;
     height: 37px;
     margin-bottom: 5px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #FFFFFF;
+    background: #c1aef5;
     border-radius: 10px;
 }
 
@@ -80,19 +86,20 @@
 
 /* Card Style */
 .restaurant-card{
-    background-color: #D9C07F;
+    background-color: #aecef5;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-areas:
-    "type type type"
-    "image info ."
-    "image info ."
+    "image type type"
+    "image info info"
+    "image info info"
     "tel . open";
     column-gap: 5px;
     border-radius: 10px;
     height: 200px;
-    padding: 10px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
     margin: 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 .restaurant-type{
@@ -134,12 +141,14 @@
 .phone{
     text-decoration: none;
     font-style: none;
-    color: #FFFFFF;
-    background-color: #81613B;
+    color: black;
+    background-color: #c1aef5;
     border-radius: 25% 10%;
     padding: 10px;
 }
 
 .isOpen-div{
     grid-area: open;
+    margin-left: 20px;
+    justify-self: center;
 }

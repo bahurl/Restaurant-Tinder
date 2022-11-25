@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-evenly;
     position: fixed;
-    background: rgba(94,62,23,1);
+    background: transparent;
     width: 100%;
     height: 31px;
 
@@ -14,7 +14,7 @@
     background: linear-gradient(180deg, rgba(214,181,117,0.24693627450980393)99%, rgba(152,105,49,1) 69%,  rgba(94,62,23,1) 0%);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    color: yellow;
+    color: #aef5d5;
 }
 
 .link{
@@ -22,6 +22,6 @@
     padding-right: 10px;
     text-decoration: none;
     font-style: none;
-    color: yellow;
+    color: #aef5d5;
 }
 
