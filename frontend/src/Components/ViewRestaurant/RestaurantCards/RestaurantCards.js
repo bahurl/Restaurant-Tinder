@@ -27,7 +27,7 @@ export default function RestaurantCards(props){
                 {isOpen ? (<h3 className='isOpen'>Open</h3>) : (<h3 className='isOpen'>closed</h3>) }
             </div>
             <div className='ThumbsUpDown'>
-             {props.isVote && <ThumbsUpDown restaurantId={props.data.restaurantId} inviteId={props.inviteId}/>}
+             {props.isVote && <ThumbsUpDown updateVote={props.updateVote} restaurantId={props.data.restaurantId} inviteId={props.inviteId}/>}
             </div>
         </div>
     )

@@ -3,6 +3,7 @@ package com.techelevator.controller;
 
 import com.techelevator.dao.ThumbsUpDownDao;
 import com.techelevator.model.ThumbsUpDown;
+import com.techelevator.model.VoteRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +19,8 @@ public class ThumbsUpDownController {
 
 
     @GetMapping(path = "vote")
-    private List<ThumbsUpDown> getThumbsUpDown(@RequestBody List<Integer> restaurantIds, Integer invitationId){
-        return thumbsUpDownDao.getVote(restaurantIds, invitationId);
+    private List<ThumbsUpDown> getThumbsUpDown(@RequestBody VoteRequest voteRequest){
+        return thumbsUpDownDao.getVote(voteRequest);
     }
 
     @PutMapping(path = "save")

@@ -19,14 +19,17 @@ export default function ThumbsUpDown(props){
             setCountDown(countDown - 1)
             setThumbsUp(true)
             setThumbsDown(false)
+            props.updateVote(restaurantId,1,-1)
         }
         else if(!thumbsDown && thumbsUp){
             setThumbsUp(false)
             setCountUp(countUp - 1)
+            props.updateVote(restaurantId,-1,0)
         }
         else if(!thumbsUp && !thumbsDown){
             setCountUp(countUp + 1)
             setThumbsUp(true)
+            props.updateVote(restaurantId,1,0)
         }
       }
     const handleDownClick = event => {
@@ -35,14 +38,17 @@ export default function ThumbsUpDown(props){
             setCountUp(countUp - 1)
             setThumbsDown(true)
             setThumbsUp(false)
+            props.updateVote(restaurantId,-1,1)
         }
         else if(!thumbsUp && thumbsDown){
             setThumbsDown(false)
             setCountDown(countDown - 1)
+            props.updateVote(restaurantId,0,-1)
         }
         else if(!thumbsDown && !thumbsUp){
             setCountDown(countDown + 1)
             setThumbsDown(true)
+            props.updateVote(restaurantId,0,1)
         }
     }  
 
