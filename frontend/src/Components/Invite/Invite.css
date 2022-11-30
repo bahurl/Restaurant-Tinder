@@ -1,15 +1,15 @@
 .invite-div {
     display: flex;
     flex-direction: column;
-    background:linear-gradient(0deg, rgba(94,62,23,1) 0%, rgba(152,105,49,1) 69%, rgba(214,181,117,1) 100%);;
+    background:lightgray;
     color: white;
     padding-top:32px;
     height:max-content;
 }
 
 .submit {
-    background-color: rgb(153, 153, 153);
-    color: white;
+    background-color: #c1aef5;
+    color: black;
     width: 150px;
     height: 50px;
     border-radius: 30px;
@@ -27,16 +27,19 @@
     text-align: center;
     font-size: 3rem;
     margin-top: 15%;
+    color: #aef5d5;
 }
 
 .location-label{
     margin-bottom: 5%;
     font-size: 1.75rem;
+    color:#aef5d5;
 }
 
 .datetime-label{
     margin-bottom: 5%;
     font-size: 1.75rem;
+    color: #aef5d5;
 }
 
 .datetime-input{
