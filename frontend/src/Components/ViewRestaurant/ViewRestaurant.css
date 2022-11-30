@@ -4,15 +4,8 @@
     align-items: center;
     flex-direction: column;
     background: lightgray;
-    background-size: 800% 800%;
+}
 
-    animation: list-background 32s ease infinite;
-}
-@keyframes list-background {
-    0%{background-position:51% 0%}
-    50%{background-position:50% 100%}
-    100%{background-position:51% 0%}
-}
 #location-label{
     color: #aef5d5;
     font-weight: 600;
