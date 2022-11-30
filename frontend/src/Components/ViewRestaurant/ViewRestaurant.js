@@ -15,6 +15,7 @@ export default function ViewRestaurants(){
 
         const data = await axios.get(baseUrl+`/restaurant/search?location=${input.location}`)
         setRestaurants(data.data);
+        console.log(data.data)
         setIsSearch(true)
 
     }

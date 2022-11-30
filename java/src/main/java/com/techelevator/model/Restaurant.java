@@ -3,6 +3,8 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class Restaurant {
     private int restaurantId;
     @JsonProperty("image_url")
@@ -20,6 +22,8 @@ public class Restaurant {
     private String openHour;
     private String closeHour;
     private String type;
+    private List<Times> timesList;
+    private boolean isOpen;
 
 
     public Restaurant(int restaurantId, String address1, String city, String state, String name, String zipCode, String openHour, String closeHour, String type) {
@@ -143,5 +147,21 @@ public class Restaurant {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Times> getTimesList() {
+        return timesList;
+    }
+
+    public void setTimesList(List<Times> timesList) {
+        this.timesList = timesList;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 }

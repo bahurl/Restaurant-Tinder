@@ -4,7 +4,7 @@ import com.techelevator.model.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,6 +35,28 @@ public class JdbcVotingDataDao implements VotingDataDao {
         return invite;
     }
 
+    public Invite getExpiredInviteById(String id){
+        Invite invite = null;
+        String sql = "SELECT * from invitations where invitation_link = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+        if (results.next()) {
+            invite = mapRowToInvite(results);
+        }
+        return invite;
+    }
+
+
+    public List<Restaurant> getRestaurantsFromExpiredLink(String location, int id){
+        String sql = "SELECT * FROM restaurants as res " +
+                " JOIN vote as v on v.restaurant_id = res.restaurant_id" +
+                " WHERE (res.city = ? OR res.zip_code = ?) AND  v.invite_id = ? AND v.thumbs_up >= v.thumbs_down;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location,id);
+        List<Restaurant> restaurants = new ArrayList<>();
+        while(results.next()) {
+            restaurants.add(mapRowToRestaurants(results));
+        }
+        return restaurants;
+    }
     @Override
     public List<Restaurant> getNearbyRestaurants(String location) {
         String sql = "SELECT * from restaurants where city = ? OR zip_code = ?;";
@@ -79,29 +101,61 @@ public class JdbcVotingDataDao implements VotingDataDao {
     public VotingData getVotingData(String inviteId) {
         VotingData vote = new VotingData();
         vote.setInvite(getInviteByLinkId(inviteId));
-        String location ="";
-        if(vote.getInvite().getCity() == null){
-            location = vote.getInvite().getZipCode();
-        } else{
-            location = vote.getInvite().getCity();
-        }
-        List<Restaurant> restaurantList = getNearbyRestaurants(location);
-        List<Integer> restaurantIds = new ArrayList<>();
-        for(Restaurant restaurant: restaurantList){
-            restaurantIds.add(restaurant.getRestaurantId());
-        }
-        vote.setRestaurants(restaurantList);
-        vote.setRestaurantIds(restaurantIds);
-        VoteRequest request = new VoteRequest();
-        request.setInvitationId(vote.getInvite().getInvitationId());
-        request.setRestaurantIds(restaurantIds);
-        if(getVote(request).size()<1){
-            for (Restaurant restaurant: restaurantList) {
-                ThumbsUpDown thumbsUpDown = new ThumbsUpDown(0,0,vote.getInvite().getInvitationId(),restaurant.getRestaurantId());
-                createVote(thumbsUpDown);
+        if(vote.getInvite() != null) {
+            vote.setExpired(false);
+            String location = "";
+            if (vote.getInvite().getCity() == null) {
+                location = vote.getInvite().getZipCode();
+            } else {
+                location = vote.getInvite().getCity();
             }
+            List<Restaurant> restaurantList = getNearbyRestaurants(location);
+            List<Integer> restaurantIds = new ArrayList<>();
+            for (Restaurant restaurant : restaurantList) {
+                restaurantIds.add(restaurant.getRestaurantId());
+            }
+            vote.setRestaurants(restaurantList);
+            vote.setRestaurantIds(restaurantIds);
+            VoteRequest request = new VoteRequest();
+            request.setInvitationId(vote.getInvite().getInvitationId());
+            request.setRestaurantIds(restaurantIds);
+            if (getVote(request).size() < 1) {
+                for (Restaurant restaurant : restaurantList) {
+                    ThumbsUpDown thumbsUpDown = new ThumbsUpDown(0, 0, vote.getInvite().getInvitationId(), restaurant.getRestaurantId());
+                    createVote(thumbsUpDown);
+                }
+            }
+            vote.setVote(getVote(request));
+        } else{
+            vote.setExpired(true);
+            vote.setInvite(getExpiredInviteById(inviteId));
+            if(vote.getInvite() != null) {
+                String location = "";
+                if (vote.getInvite().getCity() == null) {
+                    location = vote.getInvite().getZipCode();
+                } else {
+                    location = vote.getInvite().getCity();
+                }
+                List<Restaurant> restaurantList = getRestaurantsFromExpiredLink(location,vote.getInvite().getInvitationId());
+                List<Integer> restaurantIds = new ArrayList<>();
+                for (Restaurant restaurant : restaurantList) {
+                    restaurantIds.add(restaurant.getRestaurantId());
+                }
+                vote.setRestaurants(restaurantList);
+                vote.setRestaurantIds(restaurantIds);
+                VoteRequest request = new VoteRequest();
+                request.setInvitationId(vote.getInvite().getInvitationId());
+                request.setRestaurantIds(restaurantIds);
+                if (getVote(request).size() < 1) {
+                    for (Restaurant restaurant : restaurantList) {
+                        ThumbsUpDown thumbsUpDown = new ThumbsUpDown(0, 0, vote.getInvite().getInvitationId(), restaurant.getRestaurantId());
+                        createVote(thumbsUpDown);
+                    }
+                }
+                vote.setVote(getVote(request));
+            }
+
         }
-        vote.setVote(getVote(request));
 
         return vote;
     }

@@ -13,10 +13,30 @@ function Vote(props) {
     const[restaurants, setRestaurants] = React.useState([])  
     const[restaurantIds, setRestaurantIds] = React.useState([])
     const[vote, setVote] = React.useState([])
+    const[isVote, setIsVote] = React.useState()
+    
 
     
 
     React.useEffect(() => {
+
+        //Checking to see if link has expired
+        // const currentTimeDate = new Date();
+        // let inviteDate='';
+        // const getInviteDate = async () => {
+        //     const req = await axios.get(baseUrl + `/invite/${props.id}`)
+        //     const res = await req
+        //     console.log(res.data.invitationDate)
+        //     inviteDate = new Date(res.data.invitationDate)
+        //     console.log(inviteDate)
+        //     console.log(currentTimeDate)
+        //     if (currentTimeDate> inviteDate){
+        //         return false
+        //     } else{
+        //         return true
+        //     }
+        // }
+        // getInviteDate()
 
         const getData = async () => {
             try{
@@ -25,11 +45,12 @@ function Vote(props) {
             setInvite(res.data.invite)
             console.log(res.data.invite)
             setRestaurantIds(res.data.restaurantIds)
-            console.log(res.data.restaurantIds)
+            // console.log(res.data.restaurantIds)
             setVote(res.data.vote)
-            console.log(res.data.vote)
+            // console.log(res.data.vote)
             setRestaurants(res.data.restaurants)
-            console.log(res.data.restaurants)
+            // console.log(res.data.restaurants)
+            setIsVote(res.data.expired)
             setValidLink(true)
             } catch(error){
                 setValidLink(false)
@@ -99,35 +120,40 @@ function Vote(props) {
             setVote(data.data)
     }
     
-    async function saveVotes(){
-        if(typeof(vote) != "undefined"){
-            for(let i = 0 ; i< vote.length ; i++){
-            let singleVote = vote[i];
+    async function saveVotes(singleVote){
+        const resId = singleVote.restaurantId
+        const inId = singleVote.invitationId
+        const thumbsUp = singleVote.thumbsUp
+        const thumbsDown = singleVote.thumbsDown
+        if(typeof(singleVote) != "undefined"){
             const config = {
-                body: {ThumbsUpDown:singleVote}
+                restaurantId: resId, invitationId: inId, thumbsUp:thumbsUp, thumbsDown:thumbsDown
             }
-            await axios.post(baseUrl + '/votes/save', config);
-        }
+            console.log(config)
+           const req =  await axios.put(baseUrl + '/votes/save', config);
+           const res = await req
+           console.log(res.data)
+        
         }
         
     }
      
     function updateVote( restaurantId, countUp, countDown,){
-        const findRestaurant = vote.map(item =>{
-          let id = item.restaurant_id;
-            return id;
-        }
-        )
-        const voteIndex = findRestaurant.indexOf(restaurantId);
         const newVotes = vote.map(item => {
             if(item.restaurantId === restaurantId ){
+                
                 return {...item, thumbsUp:item.thumbsUp+countUp, thumbsDown:item.thumbsDown+countDown}
             }
             return item;
         })
         setVote(newVotes)
-        console.log(vote)
-        saveVotes()
+        console.log(newVotes)
+        newVotes.forEach(item => {
+            if(item.restaurantId === restaurantId ){  
+                console.log(item)  
+                saveVotes(item)
+            }
+        })
     }
 
     const restaurantDisplay = restaurants.map(item =>{  
@@ -145,7 +171,7 @@ function Vote(props) {
         }
         return(
             <div key={item.restaurantId}>
-                <RestaurantCards isVote={true} data={item} isOpen={isOpen} updateVote={updateVote}
+                <RestaurantCards isVote={isVote} data={item} isOpen={isOpen} updateVote={updateVote}
             restaurantId={item.restaurantId} inviteId={props.inviteId}/>
             </div>
             
@@ -171,7 +197,7 @@ function Vote(props) {
         <div>
             {validLink ? 
                 <div>
-                    <p>Vote for your favorite restaurant </p>
+                    <p>{isVote ? "Vote for your favorite restaurant" : "Finalist"} </p>
                     {restaurantDisplay}
                 </div>
             :

@@ -38,10 +38,9 @@ public class JdbcThumbsUpDownDao implements ThumbsUpDownDao{
 
     @Override
     public boolean update(ThumbsUpDown vote) {
-        String sql = "UPDATE FROM vote(thumbs_up,thumbs_down) WHERE invite_id = ? AND restaurant_id = ?" +
-                "VALUES(? , ?);";
+        String sql = "UPDATE vote SET thumbs_up = ?, thumbs_down = ? WHERE invite_id = ? AND restaurant_id = ?";
         try{
-            jdbcTemplate.update(sql, vote.getInvitationId(),vote.getRestaurantId(),vote.getThumbsUp(), vote.getThumbsDown());
+            jdbcTemplate.update(sql,vote.getThumbsUp(), vote.getThumbsDown(), vote.getInvitationId(),vote.getRestaurantId());
             return true;
         } catch(Exception e){
             return false;

@@ -7,6 +7,7 @@ public class VotingData {
     private List<Restaurant> restaurants;
     private Invite invite;
     private List<ThumbsUpDown> vote;
+    private boolean expired;
 
     public List<Integer> getRestaurantIds() {
         return restaurantIds;
@@ -38,5 +39,13 @@ public class VotingData {
 
     public void setVote(List<ThumbsUpDown> vote) {
         this.vote = vote;
+    }
+
+    public boolean isExpired() {
+        return expired;
+    }
+
+    public void setExpired(boolean expired) {
+        this.expired = expired;
     }
 }

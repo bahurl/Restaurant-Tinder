@@ -1,8 +1,8 @@
 package com.techelevator.model;
 
 public class ThumbsUpDown {
-    private int ThumbsUp;
-    private int ThumbsDown;
+    private int thumbsUp;
+    private int thumbsDown;
     private int invitationId;
     private int restaurantId;
 
@@ -11,27 +11,27 @@ public class ThumbsUpDown {
     }
 
     public ThumbsUpDown(int ThumbsUp, int ThumbsDown, int invitationId, int restaurantId) {
-        this.ThumbsUp = ThumbsUp;
-        this.ThumbsDown = ThumbsDown;
+        this.thumbsUp = ThumbsUp;
+        this.thumbsDown = ThumbsDown;
         this.invitationId = invitationId;
         this.restaurantId = restaurantId;
     }
 
 
     public int getThumbsUp() {
-        return this.ThumbsUp;
+        return this.thumbsUp;
     }
 
     public void setThumbsUp(int ThumbsUp) {
-        this.ThumbsUp = ThumbsUp;
+        this.thumbsUp = ThumbsUp;
     }
 
     public int getThumbsDown() {
-        return this.ThumbsDown;
+        return this.thumbsDown;
     }
 
     public void setThumbsDown(int ThumbsDown) {
-        this.ThumbsDown = ThumbsDown;
+        this.thumbsDown = ThumbsDown;
     }
 
     public int getInvitationId() {

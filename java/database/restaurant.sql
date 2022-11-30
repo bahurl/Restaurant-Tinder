@@ -51,13 +51,14 @@ CONSTRAINT PK_day_id PRIMARY KEY (day_id)
 /***************************************/
 CREATE TABLE restaurant_days(
 restaurant_id int NOT NULL,
-dayfrom_id int NOT NULL,
-dayto_id int NOT NULL,
-timeopen varchar(20) NOT NULL,
-CONSTRAINT PK_restaurant_days PRIMARY KEY (restaurant_id,dayfrom_id,dayto_id),
+day_from_id int NOT NULL,
+day_to_id int NOT NULL,
+time_open int NOT NULL,
+time_close int NOT NULL,
+CONSTRAINT PK_restaurant_days PRIMARY KEY (restaurant_id,day_from_id,day_to_id),
 CONSTRAINT FK_restaurant_id FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id),
-CONSTRAINT FK_dayfrom_id FOREIGN KEY (dayfrom_id) REFERENCES days(day_id),
-CONSTRAINT FK_dayto_id FOREIGN KEY (dayto_id) REFERENCES days(day_id)
+CONSTRAINT FK_day_from_id FOREIGN KEY (day_from_id) REFERENCES days(day_id),
+CONSTRAINT FK_day_to_id FOREIGN KEY (day_to_id) REFERENCES days(day_id)
 );
 /***************************************/
 /***************************************/
