@@ -77,8 +77,8 @@ public class JdbcVotingDataDao implements VotingDataDao {
     }
     @Override
     public List<Restaurant> getNearbyRestaurants(String location) {
-        String sql = "SELECT * from restaurants where city = ? OR zip_code = ?;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location);
+        String sql = "SELECT * from restaurants where upper(city) = ? OR zip_code = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location.toUpperCase(),location);
         List<Restaurant> restaurants = new ArrayList<>();
         while(results.next()) {
             restaurants.add(mapRowToRestaurants(results));
