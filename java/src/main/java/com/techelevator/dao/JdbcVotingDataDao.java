@@ -49,11 +49,29 @@ public class JdbcVotingDataDao implements VotingDataDao {
     public List<Restaurant> getRestaurantsFromExpiredLink(String location, int id){
         String sql = "SELECT * FROM restaurants as res " +
                 " JOIN vote as v on v.restaurant_id = res.restaurant_id" +
-                " WHERE (res.city = ? OR res.zip_code = ?) AND  v.invite_id = ? AND v.thumbs_up >= v.thumbs_down;";
+                " WHERE (res.city = ? OR res.zip_code = ?) AND  v.invite_id = ? AND v.thumbs_down < 1;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location,id);
         List<Restaurant> restaurants = new ArrayList<>();
         while(results.next()) {
             restaurants.add(mapRowToRestaurants(results));
+        }
+        for(Restaurant restaurant: restaurants) {
+            String resTime = "SELECT df.day_name as day_from, dt.day_name as day_to, rd.time_open as open, rd.time_close as close " +
+                    " FROM restaurant_days as rd " +
+                    " JOIN days as df on df.day_id = day_from_id " +
+                    " JOIN days as dt on dt.day_id = day_to_id" +
+                    " WHERE restaurant_id = ?";
+            List<Times> times = new ArrayList<>();
+            SqlRowSet timeResults = jdbcTemplate.queryForRowSet(resTime, restaurant.getRestaurantId());
+            while (timeResults.next()) {
+                times.add(mapRowToTimes(timeResults));
+            }
+            restaurant.setTimesList(times);
+            if (times.get(0).isOpen()) {
+                restaurant.setOpen(true);
+            } else if (times.size() > 1 && times.get(1).isOpen()) {
+                restaurant.setOpen(false);
+            }
         }
         return restaurants;
     }
@@ -61,24 +79,60 @@ public class JdbcVotingDataDao implements VotingDataDao {
     public List<Restaurant> getNearbyRestaurants(String location) {
         String sql = "SELECT * from restaurants where city = ? OR zip_code = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location);
-        List<Restaurant> restaurant = new ArrayList<>();
+        List<Restaurant> restaurants = new ArrayList<>();
         while(results.next()) {
-            restaurant.add(mapRowToRestaurants(results));
+            restaurants.add(mapRowToRestaurants(results));
         }
-        return restaurant;
+        for(Restaurant restaurant: restaurants) {
+            String resTime = "SELECT df.day_name as day_from, dt.day_name as day_to, rd.time_open as open, rd.time_close as close " +
+                    " FROM restaurant_days as rd " +
+                    " JOIN days as df on df.day_id = day_from_id " +
+                    " JOIN days as dt on dt.day_id = day_to_id" +
+                    " WHERE restaurant_id = ?";
+            List<Times> times = new ArrayList<>();
+            SqlRowSet timeResults = jdbcTemplate.queryForRowSet(resTime, restaurant.getRestaurantId());
+            while (timeResults.next()) {
+                times.add(mapRowToTimes(timeResults));
+            }
+            restaurant.setTimesList(times);
+            if (times.get(0).isOpen()) {
+                restaurant.setOpen(true);
+            } else if (times.size() > 1 && times.get(1).isOpen()) {
+                restaurant.setOpen(false);
+            }
+        }
+        return restaurants;
     }
 
     @Override
     public List<Restaurant> getNearbyRestaurants(String location, String type) {
         String sql = "SELECT * from restaurants where upper(city) = ? OR zip_code = ? AND type = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location.toUpperCase(),location, type);
-        List<Restaurant> restaurant = new ArrayList<>();
+        List<Restaurant> restaurants = new ArrayList<>();
         if(results.next()) {
-            restaurant.add(mapRowToRestaurants(results));
+            restaurants.add(mapRowToRestaurants(results));
         } else {
             throw new RuntimeException("location "+location+" was not found.");
         }
-        return restaurant;
+        for(Restaurant restaurant: restaurants) {
+            String resTime = "SELECT df.day_name as day_from, dt.day_name as day_to, rd.time_open as open, rd.time_close as close " +
+                    " FROM restaurant_days as rd " +
+                    " JOIN days as df on df.day_id = day_from_id " +
+                    " JOIN days as dt on dt.day_id = day_to_id" +
+                    " WHERE restaurant_id = ?";
+            List<Times> times = new ArrayList<>();
+            SqlRowSet timeResults = jdbcTemplate.queryForRowSet(resTime, restaurant.getRestaurantId());
+            while (timeResults.next()) {
+                times.add(mapRowToTimes(timeResults));
+            }
+            restaurant.setTimesList(times);
+            if (times.get(0).isOpen()) {
+                restaurant.setOpen(true);
+            } else if (times.size() > 1 && times.get(1).isOpen()) {
+                restaurant.setOpen(false);
+            }
+        }
+        return restaurants;
     }
 
     @Override
@@ -211,5 +265,13 @@ public class JdbcVotingDataDao implements VotingDataDao {
         thumbsUpDown.setInvitationId(rs.getInt("invite_id"));
         thumbsUpDown.setRestaurantId(rs.getInt("restaurant_id"));
         return thumbsUpDown;
+    }
+    private Times mapRowToTimes(SqlRowSet rs){
+        Times time = new Times();
+        time.setDayFrom(rs.getString("day_from"));
+        time.setDayTo(rs.getString("day_to"));
+        time.setOpen(rs.getInt("open"));
+        time.setClose(rs.getInt("close"));
+        return time;
     }
 }

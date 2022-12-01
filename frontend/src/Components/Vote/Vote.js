@@ -49,8 +49,9 @@ function Vote(props) {
             setVote(res.data.vote)
             // console.log(res.data.vote)
             setRestaurants(res.data.restaurants)
-            // console.log(res.data.restaurants)
+            console.log(res.data.restaurants)
             setIsVote(res.data.expired)
+            console.log(res.data.expired)
             setValidLink(true)
             } catch(error){
                 setValidLink(false)
@@ -171,7 +172,7 @@ function Vote(props) {
         }
         return(
             <div key={item.restaurantId}>
-                <RestaurantCards isVote={isVote} data={item} isOpen={isOpen} updateVote={updateVote}
+                <RestaurantCards isVote={!isVote} data={item} isOpen={isOpen} updateVote={updateVote}
             restaurantId={item.restaurantId} inviteId={props.inviteId}/>
             </div>
             
@@ -197,7 +198,7 @@ function Vote(props) {
         <div>
             {validLink ? 
                 <div>
-                    <p className="header">{isVote ? "Vote for your favorite restaurant" : "Finalist"} </p>
+                    <p className="header">{!isVote ? "Vote for your favorite restaurant" : "Finalist"} </p>
                     {restaurantDisplay}
                 </div>
             :
