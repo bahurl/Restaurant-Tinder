@@ -80,7 +80,34 @@
     padding-top: 20%;
 }
 
+
+
 @media only screen and (min-width: 800px)  {
     .login{
+        
     }
+
+    .logo {
+        padding-top: 10px;
+        padding-bottom: 5px;
+        width: 5%;
+    }
+
+    .login-register {
+        padding-top: 5%;
+    }
+
+    .create-login {
+        margin-bottom: 20px;
+    }
+
+    .login-register {
+        padding-top: 40px;
+    }
+
+    .register-btn {
+        margin-top: 15px;
+        color: white;
+    }
+    
 }

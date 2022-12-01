@@ -44,7 +44,6 @@ export default function ViewRestaurants(){
     )})
 
     return (
-
         <div className="location--list">
             <div className="search--bar">
                 <label id="location-label" >Location</label>
@@ -55,11 +54,6 @@ export default function ViewRestaurants(){
                {isSearch && restaurantDisplay}
             </div>
         </div>    
-            
-
-        
-        
-
     )
 }
 

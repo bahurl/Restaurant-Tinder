@@ -145,3 +145,15 @@
     margin-left: 20px;
     justify-self: center;
 }
+
+
+@media only screen and (min-width: 800px)  {
+    #location-label {
+        margin: 10px auto 15px auto;
+    }
+
+    .list-cards {
+        margin-top: 180px;
+        width: 100%;
+    }
+ }

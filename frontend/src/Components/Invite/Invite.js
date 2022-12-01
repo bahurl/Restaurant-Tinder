@@ -57,7 +57,7 @@ function Invite(props) {
             <h1 className='title'>Invite your friends out to eat.</h1>
             {displayInvite ? 
             <div className='invite'>
-                <h2>Invitation Link</h2> 
+                <h2 className='invite-link'>Invitation Link</h2> 
                 <input type="text" value={inviteLink}></input>
                 <button className='s' onClick={() => setDisplayInvite(oldInvite => !oldInvite)}>{"Invite Another Friend"}</button>      
             </div>

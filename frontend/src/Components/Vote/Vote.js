@@ -198,7 +198,7 @@ function Vote(props) {
         <div>
             {validLink ? 
                 <div>
-                    <p className="header">{!isVote ? "Vote for your favorite restaurant" : "Finalist"} </p>
+                    <p className="header">{!isVote ? "Vote for your favorite restaurant" : "Invalid Link"} </p>
                     {restaurantDisplay}
                 </div>
             :

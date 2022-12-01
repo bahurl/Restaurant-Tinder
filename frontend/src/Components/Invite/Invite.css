@@ -46,3 +46,34 @@
     margin-bottom: 15%;
 
 }
+
+
+@media only screen and (min-width: 800px)  {
+   .title {
+        margin-top: 50px;
+   }
+
+   .location-label {
+        margin-bottom: 5px;
+   }
+
+   .datetime-label {
+        margin-bottom: 5px;
+   }
+
+   .location-datetime {
+        margin-top: 5px;
+   }
+    
+   .datetime-input.input {
+        margin-bottom: 40px;
+   }
+
+   .invite {
+        text-align: center;
+   }
+    
+   .invite-link {
+    margin-bottom: 20px;
+   }
+}

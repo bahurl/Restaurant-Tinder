@@ -1,5 +1,18 @@
-# Final Capstone
+# Restaurant Tinder
+Restaurant Tinder is a web application that helps friends choose which restaurants to visit during an outing. You can send timed invites to your friends so that they can vote for which restaurants to visit in the area of your choosing. You can then use their votes to come to a restaurant finalist list.
 
-This directory contains all of the starter projects for the final capstone. The React starter project works with the Java project with a single configuration update that you can read about in the README.
+## How to run the front end
+type `npm install` and then `npm start` into the front end terminal
 
-Each project contains instructions that provides information about the starting code and explains how to get started with the final capstone project.
+## How to run the back end 
+1. Run sql scripts in this order:
+    - dropdb.sql 
+    - schema.sql 
+    - user.sql 
+    - restaurant.sql 
+
+2. Run Spring Boot application
+
+3. Copy the contents of `restaurant info.txt` and send a POST request to http://localhost:8081/restaurant/save
+
+4. Run `timeopen.sql`
