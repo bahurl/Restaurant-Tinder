@@ -13,7 +13,7 @@ export default function ThumbsUpDown(props){
 
     
 
-    const handleUpClick = event => {
+    const handleUpClick = () => {
         if(!thumbsUp && thumbsDown){
             setCountUp(countUp + 1)
             setCountDown(countDown - 1)
@@ -32,7 +32,7 @@ export default function ThumbsUpDown(props){
             props.updateVote(restaurantId,1,0)
         }
       }
-    const handleDownClick = event => {
+    const handleDownClick = () => {
         if(!thumbsDown && thumbsUp){
             setCountDown(countDown + 1)
             setCountUp(countUp - 1)

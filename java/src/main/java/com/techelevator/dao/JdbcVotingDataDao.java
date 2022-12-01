@@ -49,8 +49,8 @@ public class JdbcVotingDataDao implements VotingDataDao {
     public List<Restaurant> getRestaurantsFromExpiredLink(String location, int id){
         String sql = "SELECT * FROM restaurants as res " +
                 " JOIN vote as v on v.restaurant_id = res.restaurant_id" +
-                " WHERE (res.city = ? OR res.zip_code = ?) AND  v.invite_id = ? AND v.thumbs_down < 1;";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location,location,id);
+                " WHERE (upper(res.city) = ? OR res.zip_code = ?) AND  v.invite_id = ? AND v.thumbs_down < 1;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location.toUpperCase(),location,id);
         List<Restaurant> restaurants = new ArrayList<>();
         while(results.next()) {
             restaurants.add(mapRowToRestaurants(results));

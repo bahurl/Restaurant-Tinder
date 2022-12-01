@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 public class Invite {
