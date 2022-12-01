@@ -1,8 +1,7 @@
 import axios from "axios";
 import React from "react";
-import { useState , useEffect} from "react";
+import { useState } from "react";
 import {baseUrl} from '../../Shared/baseUrl'
-import { Token } from "../../Redux/token";
 import './ViewRestaurant.css'
 import RestaurantCards from "./RestaurantCards/RestaurantCards";
 
@@ -15,7 +14,6 @@ export default function ViewRestaurants(){
 
         const data = await axios.get(baseUrl+`/restaurant/search?location=${input.location}`)
         setRestaurants(data.data);
-        console.log(data.data)
         setIsSearch(true)
 
     }
@@ -28,19 +26,19 @@ export default function ViewRestaurants(){
 
     const restaurantDisplay = restaurants.map(item =>{  
         const isOpen = () => { 
-            const openHour = item.openHour.split(":");
-            const closeHour = item.closeHour.split(":");
+            const openHour = item.timesList[0].open
+            const closeHour = item.timesList[0].close
             const d = new Date();
             const currentHour = d.getHours();
-            const currentMinutes = d.getMinutes();
-            if (openHour[0] <= currentHour && openHour[1] <= currentMinutes && closeHour[0] >= currentHour && closeHour[1] > currentMinutes ){
+            if (openHour <= currentHour &&  closeHour >= currentHour  ){
                 return true;
             } else {
                 return false;
-            }
+            }  
         }
+        const open = isOpen()
         return(
-            <RestaurantCards isVote={false} data={item} isOpen={isOpen} key={item.restaurant_id}/>
+            <RestaurantCards isVote={false} data={item} isOpen={open} key={item.restaurant_id}/>
     )})
 
     return (
@@ -48,7 +46,7 @@ export default function ViewRestaurants(){
             <div className="search--bar">
                 <label id="location-label" >Location</label>
                 <input className='input' id="location" name="location" type="text" placeholder="Enter City or Zip Code" onChange={handleInput} />
-                <button onClick={getRestaurants} className="search--button">Search</button>
+                <button onClick={getRestaurants} id="search-btn" className="search--button">Search</button>
             </div>
             <div className="list-cards">
                {isSearch && restaurantDisplay}

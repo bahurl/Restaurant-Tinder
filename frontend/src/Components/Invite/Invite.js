@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { User } from '../../Redux/user';
 import { baseUrl } from '../../Shared/baseUrl';
 import {nanoid} from "nanoid"
 import './Invite.css';
@@ -30,8 +29,6 @@ function Invite(props) {
     }
 
     function handleSubmit() {
-        //alert(`${props.user.id} ${formData.location} ${formData.datetime} ${nanoid()}`)
-
         const isNum = /^\d+$/.test(formData.location);
         const inviteId = nanoid();
         
@@ -43,7 +40,7 @@ function Invite(props) {
         } 
         
         axios.post(baseUrl + "/invite/create", invite)
-                .then((response) => {
+                .then(() => {
                     setInviteLink(`http://localhost:3000/vote/${inviteId}`)
                     setDisplayInvite(oldInvite => !oldInvite);
                 })
@@ -54,12 +51,12 @@ function Invite(props) {
 
     return(
         <div className='invite-div'>
-            <h1 className='title'>Invite your friends out to eat.</h1>
+            <h1 className='title'>Invite your friends out to eat!</h1>
             {displayInvite ? 
             <div className='invite'>
                 <h2 className='invite-link'>Invitation Link</h2> 
                 <input type="text" value={inviteLink}></input>
-                <button className='s' onClick={() => setDisplayInvite(oldInvite => !oldInvite)}>{"Invite Another Friend"}</button>      
+                <button className='s' onClick={() => setDisplayInvite(oldInvite => !oldInvite)}>{"Create New Invitation"}</button>      
             </div>
             :  
             <div className='location-datetime'>
@@ -69,7 +66,7 @@ function Invite(props) {
                         type="text"
                         id="location"
                         name="location"
-                        placeholder="location or zip code"
+                        placeholder="Location or ZIP code"
                         value={formData.location}
                         onChange={handleInputChange}
                         required

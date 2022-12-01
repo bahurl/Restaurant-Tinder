@@ -53,30 +53,6 @@
     margin-top: 153px;
 }
 
-/* .restaurant--details{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 250px;
-    border-radius: 15px;
-    margin: 20px;
-    box-shadow: 5px 5px 10px;
-    background-color: #d6b575;
-    color: #36220b;
-}
-
-.restaurant--name{
-    font-weight: bold;
-}
-.restaurant--HoO{
-    font-weight: bold;
-}
-.information{
-    margin: 0px;
-} */
-
-
 /* Card Style */
 .restaurant-card{
     background-color: #aecef5;

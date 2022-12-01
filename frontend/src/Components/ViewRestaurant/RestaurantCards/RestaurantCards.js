@@ -1,11 +1,10 @@
-import Accordion from 'react-bootstrap/Accordion';
 import React from 'react';
 import ThumbsUpDown from '../../ThumbsUpDown/ThumbsUpDown';
 
 
 export default function RestaurantCards(props){
    const item = props.data
-   const isOpen = props.data.open
+   const isOpen = props.isOpen
    let timeOpen1 = () => {
     if (item.timesList[0].open > 12 ){
         const open = item.timesList[0].open -12

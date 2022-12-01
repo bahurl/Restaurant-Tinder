@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class Times {
     private String dayFrom;
