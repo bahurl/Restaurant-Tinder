@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     background:lightgray;
-    color: white;
+    color: crimson;
     padding-top:32px;
     height:max-content;
 }
 
 .submit {
-    background-color: #c1aef5;
+    background-color: crimson;
     color: black;
     width: 150px;
     height: 50px;
@@ -27,19 +27,19 @@
     text-align: center;
     font-size: 3rem;
     margin-top: 15%;
-    color: #aef5d5;
+    color: crimson;
 }
 
 .location-label{
     margin-bottom: 5%;
     font-size: 1.75rem;
-    color:#aef5d5;
+    color:crimson;
 }
 
 .datetime-label{
     margin-bottom: 5%;
     font-size: 1.75rem;
-    color: #aef5d5;
+    color: crimson;
 }
 
 .datetime-input{

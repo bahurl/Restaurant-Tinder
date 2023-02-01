@@ -23,7 +23,7 @@
     border: 15px;
     padding: 0px;
     background: transparent;
-    background: darkgrey;
+    background: crimson;
 }
 
 .input{
@@ -31,7 +31,7 @@
     margin-bottom: 20px;
     width: 257px;
     height: 37px;
-    background-color: #c1aef5;
+    background-color: white;
     border: 1px solid #000000;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -46,7 +46,7 @@
     width: 100px;
     height: 37px;
     margin-bottom: 5px;
-    background: #c1aef5;
+    background: white;
     border-radius: 10px;
 }
 
@@ -56,7 +56,7 @@
 
 /* Card Style */
 .restaurant-card{
-    background-color: #aecef5;
+    background-color: lightcoral;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     grid-template-areas:
@@ -112,7 +112,7 @@
     text-decoration: none;
     font-style: none;
     color: black;
-    background-color: #c1aef5;
+    background-color: crimson;
     border-radius: 25% 10%;
     padding: 10px;
 }

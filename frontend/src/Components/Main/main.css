@@ -14,7 +14,7 @@
     background: linear-gradient(180deg, rgba(214,181,117,0.24693627450980393)99%, rgba(152,105,49,1) 69%,  rgba(94,62,23,1) 0%);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    color: #aef5d5;
+    color: white;
 }
 
 .link{
@@ -22,6 +22,6 @@
     padding-right: 10px;
     text-decoration: none;
     font-style: none;
-    color: #aef5d5;
+    color: crimson;
 }
 
